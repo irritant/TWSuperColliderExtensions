@@ -65,7 +65,7 @@ Creates a new `TWPitch` instance with a given MIDI note number.
 **initWithPitchClass(pitchClass: 0, octave: 0)**  
 Initializes the object with a given pitch class and octave. This method is invoked by `TWPitch.newPitch()` and should not be invoked manually.   
 
-**initWithMIDINoteNumber(noteNumber: 0)**
+**initWithMIDINoteNumber(noteNumber: 0)**  
 Initializes the object with a given MIDI note number. This method is invoked by `TWPitch.newPitchWithMIDINoteNumber()` and should not be invoked manually.  
 
 **midiNoteNumber**  
