@@ -32,49 +32,47 @@ Octaves are identified by integers ranging from `0` to `inf`. Pitch class `0` in
 
 ##### Class Variables
 
-**`referenceFrequency`** (get, set)  
+**referenceFrequency** (get, set)  
 The tuning reference for frequency calculation, in Hz. Defaults to `440.0`.  
   
-**`referencePitchClass`** (get)  
+**referencePitchClass** (get)  
 The pitch class of the tuning reference note (`9`).  
 
-**`referenceOctave`** (get)  
+**referenceOctave** (get)  
 The octave of the tuning reference note (`5`).  
 
-**`midiBaseOctave`** (get, set)  
+**midiBaseOctave** (get, set)  
 The lowest octave for MIDI. Defaults to `-1`, which is appropriate for most MIDI systems. Set to `-2` for Yamaha systems.  
-
-	classvar <>midiBaseOctave = -1;
 
 ##### Instance Variables
 
-**`pitchClass`** (get, set)  
+**pitchClass** (get, set)  
 The current pitch class ranging from `0` to `11`.
 
-**`octave`** (get, set)  
+**octave** (get, set)  
 The current octave ranging from `0` to `inf`.
 
 ##### Class Methods
 
-**`newPitch(pitchClass: 0, octave: 0)`**  
+**newPitch(pitchClass: 0, octave: 0)**  
 Creates a new `TWPitch` instance with a given pitch class and octave.  
 
-**`newPitchWithMIDINoteNumber(noteNumber: 0)`**  
+**newPitchWithMIDINoteNumber(noteNumber: 0)**  
 Creates a new `TWPitch` instance with a given MIDI note number.  
 
 ##### Instance Methods
 
-**`initWithPitchClass(pitchClass: 0, octave: 0)`**  
+**initWithPitchClass(pitchClass: 0, octave: 0)**  
 Initializes the object with a given pitch class and octave. This method is invoked by `TWPitch.newPitch()` and should not be invoked manually.   
 
-**`initWithMIDINoteNumber(noteNumber: 0)`**
+**initWithMIDINoteNumber(noteNumber: 0)**
 Initializes the object with a given MIDI note number. This method is invoked by `TWPitch.newPitchWithMIDINoteNumber()` and should not be invoked manually.  
 
-**`midiNoteNumber`**  
+**midiNoteNumber**  
 Calculates and returns the MIDI note number for the current pitch class and octave.  
 
-**`midiOctave`**  
+**midiOctave**  
 Returns the current octave, offset by the value of `TWPitch.midiBaseOctave`.  
 
-**`frequency`**  
+**frequency**  
 Calculates and returns the frequency in Hz for the current pitch class and octave.  
