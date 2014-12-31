@@ -104,10 +104,9 @@ TWPitch {
 	}
 
 	frequency {
-		arg referenceFrequency = TWPitch.referenceFrequency;
 		var refOctave = this.octave - TWPitch.referenceOctave;
 		var refPitchClass = this.pitchClass - TWPitch.referencePitchClass;
-		^(referenceFrequency.max(1.0) * (2.0 pow: (refOctave + (refPitchClass / 12.0))));
+		^(TWPitch.referenceFrequency * (2.0 pow: (refOctave + (refPitchClass / 12.0))));
 	}
 
 }
