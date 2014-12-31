@@ -1,12 +1,70 @@
 TWPitch {
 
-	classvar <>referenceFrequency = 440.0;
-	classvar <referencePitchClass = 9;
-	classvar <referenceOctave = 5;
-	classvar <>midiBaseOctave = -1;
+	classvar protectedReferenceFrequency = 440.0;
+	classvar protectedReferencePitchClass = 9;
+	classvar protectedReferenceOctave = 5;
+	classvar protectedMIDIBaseOctave = -1;
 
-	var <>pitchClass = 0;
-	var <>octave = 0;
+	var protectedPitchClass = 0;
+	var protectedOctave = 0;
+
+	// Reference Values:
+
+	*referenceFrequency {
+		^protectedReferenceFrequency;
+	}	
+
+	*setReferenceFrequency {
+		arg frequency = 440.0;
+		protectedReferenceFrequency = frequency.max(1.0);
+	}
+
+	*referencePitchClass {
+		^protectedReferencePitchClass;
+	}	
+
+	*setReferencePitchClass {
+		arg pitchClass = 9;
+		protectedReferencePitchClass = pitchClass.floor.max(0).min(11);
+	}
+
+	*referenceOctave {
+		^protectedReferenceOctave;
+	}	
+
+	*setReferenceOctave {
+		arg octave = 5;
+		protectedReferenceOctave = octave.floor.max(0);
+	}
+
+	*midiBaseOctave {
+		^protectedMIDIBaseOctave;
+	}	
+
+	*setMIDIBaseOctave {
+		arg octave = -1;
+		protectedMIDIBaseOctave = octave.floor.max(-2).min(0);
+	}
+
+	// Pitch Class & Octave:
+
+	pitchClass {
+		^protectedPitchClass;
+	}
+
+	setPitchClass {
+		arg pitchClass = 0;
+		protectedPitchClass = pitchClass.floor.max(0).min(11);
+	}
+
+	octave {
+		^protectedOctave;
+	}
+
+	setOctave {
+		arg octave = 0;
+		protectedOctave = octave.floor.max(0);
+	}
 
 	// Initialization:
 
@@ -25,14 +83,14 @@ TWPitch {
 
 	initWithPitchClass {
 		arg pitchClass = 0, octave = 0;
-		this.pitchClass = pitchClass;
-		this.octave = octave;
+		this.setPitchClass(pitchClass);
+		this.setOctave(octave);
 	}
 
 	initWithMIDINoteNumber {
 		arg noteNumber = 0;
-		this.pitchClass = noteNumber % 12;
-		this.octave = (noteNumber / 12).floor;
+		this.setPitchClass(noteNumber % 12);
+		this.setOctave(noteNumber / 12);
 	}
 
 	// Conversion:
@@ -46,9 +104,10 @@ TWPitch {
 	}
 
 	frequency {
+		arg referenceFrequency = TWPitch.referenceFrequency;
 		var refOctave = this.octave - TWPitch.referenceOctave;
 		var refPitchClass = this.pitchClass - TWPitch.referencePitchClass;
-		^(TWPitch.referenceFrequency * (2.0 pow: (refOctave + (refPitchClass / 12.0))));
+		^(referenceFrequency.max(1.0) * (2.0 pow: (refOctave + (refPitchClass / 12.0))));
 	}
 
 }

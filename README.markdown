@@ -30,49 +30,63 @@ TWPitch facilitates the use of pitch class notation in SuperCollider. Pitch clas
 
 Octaves are identified by integers ranging from `0` to `inf`. Pitch class `0` in octave `0` produces C at ~8.176Hz. Pitch class `9` in octave `5` produces A at 440.0Hz.  
 
-##### Class Variables
+#### Class Methods
 
-**referenceFrequency** (get, set)  
-The tuning reference for frequency calculation, in Hz. Defaults to `440.0`.  
+##### referenceFrequency
+Returns the tuning reference for frequency calculation in Hz. Defaults to `440.0`.  
+
+##### setReferenceFrequency(frequency: 440.0)
+Sets the tuning reference for frequency calculation in Hz, limited to a minimum value of `1.0`.  
   
-**referencePitchClass** (get)  
-The pitch class of the tuning reference note (`9`).  
+##### referencePitchClass
+Returns the pitch class of the tuning reference note. Defaults to `9`.  
 
-**referenceOctave** (get)  
-The octave of the tuning reference note (`5`).  
+##### setReferencePitchClass(pitchClass: 9)
+Sets the pitch class of the tuning reference note, limited to integers in the range `0..11`.   
 
-**midiBaseOctave** (get, set)  
-The lowest octave for MIDI. Defaults to `-1`, which is appropriate for most MIDI systems. Set to `-2` for Yamaha systems.  
+##### referenceOctave
+Returns the octave of the tuning reference note. Defaults to `5`.  
 
-##### Instance Variables
+##### setReferenceOctave(octave: 5)
+Sets the octave of the tuning reference note, limited to integers in the range `0..inf`.  
 
-**pitchClass** (get, set)  
-The current pitch class ranging from `0` to `11`.
+##### midiBaseOctave
+Returns the MIDI base octave. Defaults to `-1`, which is appropriate for most MIDI systems.    
 
-**octave** (get, set)  
-The current octave ranging from `0` to `inf`.
+##### setMIDIBaseOctave(octave: -1)
+Sets the MIDI base octave, limited to integers in the range `-2..0`.  
 
-##### Class Methods
-
-**newPitch(pitchClass: 0, octave: 0)**  
+##### newPitch(pitchClass: 0, octave: 0)
 Creates a new `TWPitch` instance with a given pitch class and octave.  
 
-**newPitchWithMIDINoteNumber(noteNumber: 0)**  
+##### newPitchWithMIDINoteNumber(noteNumber: 0)
 Creates a new `TWPitch` instance with a given MIDI note number.  
 
-##### Instance Methods
+#### Instance Methods
 
-**initWithPitchClass(pitchClass: 0, octave: 0)**  
-Initializes the object with a given pitch class and octave. This method is invoked by `TWPitch.newPitch()` and should not be invoked manually.   
+##### pitchClass
+Returns the instance's pitch class. Defaults to `0`.  
 
-**initWithMIDINoteNumber(noteNumber: 0)**  
-Initializes the object with a given MIDI note number. This method is invoked by `TWPitch.newPitchWithMIDINoteNumber()` and should not be invoked manually.  
+##### setPitchClass(pitchClass: 0)
+Sets the instance's pitch class, limited to integers in the range `0..11`.  
 
-**midiNoteNumber**  
+##### octave
+Returns the instance's octave. Defaults to `0`.  
+
+##### setOctave(octave: 0)
+Sets the instance's octave, limited to integers in the range `0..inf`.  
+
+##### initWithPitchClass(pitchClass: 0, octave: 0)
+Initializes the object with a given pitch class and octave. This method is invoked by `TWPitch.newPitch()`. You should never need to call it manually.  
+
+##### initWithMIDINoteNumber(noteNumber: 0)
+Initializes the object with a given MIDI note number. This method is invoked by `TWPitch.newPitchWithMIDINoteNumber()`. You should never need to call it manually.  
+
+##### midiNoteNumber
 Calculates and returns the MIDI note number for the current pitch class and octave.  
 
-**midiOctave**  
+##### midiOctave
 Returns the current octave, offset by the value of `TWPitch.midiBaseOctave`.  
 
-**frequency**  
+##### frequency
 Calculates and returns the frequency in Hz for the current pitch class and octave.  
