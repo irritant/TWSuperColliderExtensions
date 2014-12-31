@@ -65,13 +65,13 @@ Creates a new `TWPitch` instance with a given MIDI note number.
 #### Instance Methods
 
 ##### pitchClass
-Returns the instance's pitch class. Defaults to `0`.  
+Returns the instance's pitch class.  
 
 ##### setPitchClass(pitchClass: 0)
 Sets the instance's pitch class, limited to integers in the range `0..11`.  
 
 ##### octave
-Returns the instance's octave. Defaults to `0`.  
+Returns the instance's octave.  
 
 ##### setOctave(octave: 0)
 Sets the instance's octave, limited to integers in the range `0..inf`.  
@@ -90,3 +90,43 @@ Returns the current octave, offset by the value of `TWPitch.midiBaseOctave`.
 
 ##### frequency
 Calculates and returns the frequency in Hz for the current pitch class and octave.  
+
+### TWDuration
+TWDuration facilitates conversion from fractional note durations (eg. `1/4`, `1/8`, `1/16`) to time in seconds and milliseconds.  
+
+#### Class Methods
+
+##### referenceTempo
+Returns the default tempo used for time calculations in beats per minute. Defaults to `60.0`.  
+
+##### setReferenceTempo(tempo: 60.0)
+Sets the default tempo used for time calculations in beats per minute, limited to the range `1.0..inf`.  
+
+##### newDuration(numerator: 1, denominator: 1)
+Creates a new `TWDuration` instance with a given numerator and denominator.  
+
+#### Instance Methods
+
+##### numerator
+Returns the instance's numerator.  
+
+##### setNumerator(numerator: 1)
+Sets the instance's numerator, limited to the range `1..inf`.  
+
+##### denominator
+Returns the instance's denominator.  
+
+##### setDenominator(denominator: 1)
+Sets the instance's denominator, limited to the range `1..inf`.  
+
+##### initWithFraction(numerator: 1, denominator: 1)
+Initializes the object with a given numerator and denominator. This method is invoked by `TWDuration.newDuration()`. You should never need to call it manually.  
+
+##### decimal
+Returns the instance's fraction as a decimal.   
+
+##### seconds(tempo: TWDuration.referenceTempo)
+Returns the instance's duration for a given tempo, in seconds. If the `tempo` argument is omitted, `TWDuration.referenceTempo` is used by default.  
+
+##### milliseconds(tempo: TWDuration.referenceTempo)
+Returns the instance's duration for a given tempo, in milliseconds. If the `tempo` argument is omitted, `TWDuration.referenceTempo` is used by default.  
