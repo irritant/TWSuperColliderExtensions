@@ -57,10 +57,10 @@ Returns the MIDI base octave. Defaults to `-1`, which is appropriate for most MI
 Sets the MIDI base octave, limited to integers in the range `-2..0`.  
 
 ##### newPitch(pitchClass: 0, octave: 0)
-Creates a new `TWPitch` instance with a given pitch class and octave.  
+Returns a new `TWPitch` object with a given pitch class and octave.  
 
 ##### newPitchWithMIDINoteNumber(noteNumber: 0)
-Creates a new `TWPitch` instance with a given MIDI note number.  
+Returns a new `TWPitch` object with a given MIDI note number.  
 
 #### Instance Methods
 
@@ -103,7 +103,7 @@ Returns the default tempo used for time calculations in beats per minute. Defaul
 Sets the default tempo used for time calculations in beats per minute, limited to the range `1.0..inf`.  
 
 ##### newDuration(numerator: 1, denominator: 1)
-Creates a new `TWDuration` instance with a given numerator and denominator.  
+Returns a new `TWDuration` object with a given numerator and denominator.  
 
 #### Instance Methods
 
@@ -130,3 +130,36 @@ Returns the instance's duration for a given tempo, in seconds. If the `tempo` ar
 
 ##### milliseconds(tempo: TWDuration.referenceTempo)
 Returns the instance's duration for a given tempo, in milliseconds. If the `tempo` argument is omitted, `TWDuration.referenceTempo` is used by default.  
+
+### TWNote
+TWNote combines one instance each of `TWPitch` and `TWDuration` to create a description of a musical note.  
+
+#### Instance Variables
+
+##### pitch (get, set)
+An instance of `TWPitch`.  
+
+##### duration (get, set)
+An instance of `TWDuration`.  
+
+##### isRest (get, set)
+A `Boolean` indicating whether or not the note should be interpreted as a rest.  
+
+#### Class Methods
+
+##### newNote(pitch: TWPitch.newPitch, duration: TWDuration.newDuration, isRest: false)
+Returns a new `TWNote` object with instances of `TWPitch` and `TWDuration`. The `isRest` argument may be used to indicate that the note should be interpreted as a rest.  
+
+##### newNoteWithPitchClass(pitchClass: 0, octave: 0, durationNumerator: 1, durationDenominator: 1)
+Returns a new `TWNote` object with a given pitch class, octave and duration. See `TWPitch` and `TWDuration` for descriptions of the `pitchClass`, `octave`, `durationNumerator` and `durationDenominator` arguments.  
+
+##### newNoteWithMIDINoteNumber(noteNumber: 0, durationNumerator: 1, durationDenominator: 1)
+Returns a new `TWNote` object with a given MIDI note number and duration. See `TWPitch` and `TWDuration` for descriptions of the `pitchClass`, `octave`, `durationNumerator` and `durationDenominator` arguments.  
+
+##### newRest(durationNumerator: 1, durationDenominator: 1)
+Returns a new `TWNote` object configured as a rest with a given duration. See `TWDuration` for descriptions of the `durationNumerator` and `durationDenominator` arguments.  
+
+#### Instance Methods
+
+##### initWithPitchAndDuration(pitch: TWPitch.newPitch, duration: TWDuration.newDuration, isRest: false)
+Initializes the object with instances of `TWPitch` and `TWDuration`. This method is invoked by `TWNote.newNote`, `TWNote.newNoteWithPitchClass`, `TWNote.newNoteWithMIDINoteNumber` and `TWNote.newRest`. You should never need to call it manually.  
