@@ -24,7 +24,7 @@ TWDuration {
 
 	setNumerator {
 		arg numerator = 1;
-		protectedDenominator = numerator.ceil.max(1);
+		protectedNumerator = numerator.ceil.max(1);
 	}
 
 	denominator {
