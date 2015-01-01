@@ -57,6 +57,10 @@ TWDuration {
 		^(this.numerator / this.denominator);
 	}
 
+	clock {
+		^(this.decimal * 4.0);
+	}
+
 	seconds {
 		arg tempo = TWDuration.referenceTempo;
 		var beatDuration = 60.0 / tempo.max(1.0);

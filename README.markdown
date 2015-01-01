@@ -123,7 +123,10 @@ Sets the instance's denominator, limited to the range `1..inf`.
 Initializes the object with a given numerator and denominator. This method is invoked by `TWDuration.newDuration()`. You should never need to call it manually.  
 
 ##### decimal
-Returns the instance's fraction as a decimal.   
+Returns the instance's fraction as a decimal.  
+
+##### clock
+Returns the instance's fraction as a clock duration that can be used in a `Task`. This is equal to `instance.decimal * 4.0`.  
 
 ##### seconds(tempo: TWDuration.referenceTempo)
 Returns the instance's duration for a given tempo, in seconds. If the `tempo` argument is omitted, `TWDuration.referenceTempo` is used by default.  
